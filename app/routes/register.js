@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import LoginRedirect from 'osf-meetings/mixins/login-redirect';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(LoginRedirect, {
   model() {
     return this.store.createRecord('conference');
   },
