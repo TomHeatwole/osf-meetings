@@ -13,9 +13,10 @@ export default Ember.Mixin.create({
     	for(var i=0;i < ca.length;i++) {
 	        var c = ca[i];
 	        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	        console.log( c.substring(nameEQ.length,c.length));
 	        	if (c.indexOf(nameEQ) == 0) {
-	        		// TODO: Don't just set loggedIn to true, also check if the id is still valid
-	        		var sessionid = c.substring(nameEQ.length,c.length);
+	        		//The following line will return the actual session ID if necessary in future developing
+	        		// var sessionid = c.substring(nameEQ.length,c.length);
 	        		loggedIn = true;
         		}
 
