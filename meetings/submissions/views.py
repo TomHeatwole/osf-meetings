@@ -4,6 +4,9 @@ from rest_framework.response import Response
 
 from submissions.serializers import SubmissionSerializer
 from submissions.models import Submission
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 from guardian.mixins import PermissionRequiredMixin, PermissionListMixin
 from guardian.shortcuts import assign_perm
@@ -13,7 +16,7 @@ from guardian.shortcuts import assign_perm
 class SubmissionList(ListCreateAPIView):
     model = Submission
     serializer_class = SubmissionSerializer
-    resource_name = 'Submission'
+    resource_name = 'submission'
     encoding = 'utf-8'
     queryset= Submission.objects.all()
 
@@ -22,10 +25,10 @@ class SubmissionList(ListCreateAPIView):
         submissionsSerializer = SubmissionSerializer(conferenceSubmissions, context={'request': request}, many=True)
         return Response(submissionsSerializer.data)
 
+    @method_decorator(login_required)
     def post(self, request, conference_id=None, format=None):
         serializer = SubmissionSerializer(data=request.data)
         contributors = [request.user.id]
-
         if serializer.is_valid():
             serializer.save(contributors=contributors)
             return Response(serializer.data)
@@ -35,7 +38,7 @@ class SubmissionList(ListCreateAPIView):
 
 # Detail of a submission
 class SubmissionDetail(APIView):
-    resource_name = 'Submission'
+    resource_name = 'submission'
     serializer_class = SubmissionSerializer
 
     def get(self, request, conference_id=None, submission_id=None , format=None):
