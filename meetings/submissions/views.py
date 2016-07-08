@@ -5,9 +5,13 @@ from rest_framework.response import Response
 from submissions.serializers import SubmissionSerializer
 from submissions.models import Submission
 
+from guardian.mixins import PermissionRequiredMixin, PermissionListMixin
+from guardian.shortcuts import assign_perm
+
 
 # List of submissions
 class SubmissionList(ListCreateAPIView):
+    model = Submission
     serializer_class = SubmissionSerializer
     resource_name = 'Submission'
     encoding = 'utf-8'
