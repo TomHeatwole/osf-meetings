@@ -21,14 +21,19 @@ class ConferenceList(ListCreateAPIView):
     queryset = Conference.objects.all()
     serializer_class = ConferenceSerializer
 
-    @method_decorator(login_required)
-    def post (self, request, format=None):
-        super(self, request, format)
-        assign_perm('change_conference', self.request.user, self.object)
-        assign_perm('delete_conference', self.request.user, self.object)
+    # @method_decorator(login_required)
+    def post (self, request, *args, **kwargs):
+        r = super(ConferenceList, self).post(request, args, kwargs)
+        conference = Conference.objects.get(id=request.data['id'])
+        #assign_perm('conferences.change_conference', self.request.user, conference)
+        assign_perm('conferences.delete_conference', self.request.user, conference)
+        return r
 
     def delete (self, request, format=None):
+        conference = Conference.objects.get(id=request.data['id'])
+        print(self.request.user.has_perm('delete_conference', conference))
         print('delete!')
+        return super(ConferenceList, self).post(request, args, kwargs)
 
 
 
