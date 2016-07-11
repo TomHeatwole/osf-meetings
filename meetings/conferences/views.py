@@ -6,6 +6,13 @@ from rest_framework.response import Response
 from conferences.models import Conference
 from conferences.serializers import ConferenceSerializer
 
+from guardian.shortcuts import assign_perm
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
+
 
 # List of conferences
 class ConferenceList(ListCreateAPIView):
@@ -13,6 +20,16 @@ class ConferenceList(ListCreateAPIView):
 
     queryset = Conference.objects.all()
     serializer_class = ConferenceSerializer
+
+    @method_decorator(login_required)
+    def post (self, request, format=None):
+        super(self, request, format)
+        assign_perm('change_conference', self.request.user, self.object)
+        assign_perm('delete_conference', self.request.user, self.object)
+
+    def delete (self, request, format=None):
+        print('delete!')
+
 
 
 # Detail of a conference
