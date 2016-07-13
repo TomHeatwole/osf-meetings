@@ -98,11 +98,15 @@ export default Ember.Controller.extend(EmberValidations, {
 				this.set('displayErrors',true);
 			}
 		},
-		permissionTest() {
-			 Ember.$.ajax({
-		 	 	url : "http://localhost:8000/conferences/",
-                type : "DELETE"
-			 });
+		permissionTest(conferenceID) {
+			Ember.$.ajax({
+			 	url : "http://localhost:8000/conferences/" + conferenceID + "/",
+			 	crossDomain: true,
+		 	  	xhrFields: {
+			      withCredentials: true
+			   	},
+				type : "DELETE"
+			});
 		}
 	}
 });
