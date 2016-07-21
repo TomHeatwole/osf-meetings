@@ -3,6 +3,10 @@ from guardian.shortcuts import assign_perm, remove_perm
 from django.contrib.auth.models import User, Group
 from osf_oauth2_adapter.apps import OsfOauth2AdapterConfig
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 class SubmissionPermissions(permissions.DjangoObjectPermissions):
 
     """
@@ -25,17 +29,28 @@ class SubmissionPermissions(permissions.DjangoObjectPermissions):
         # OVERWRITING THIS METHOD FROM DRF
         #
         # This method gets called on list view and normally fails due to
+<<<<<<< HEAD
         # the commented out line below.
+=======
+        # the commented out line in the return statement below.
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
         #
         # DjangoObjectPermissionsFilter ensures users can only see what they are supposed
         # to be able to see
         #
         # has_object_permission() in DjangoObjectPermissions ensures users can only
         # GET, POST, PATCH etc. on objects they have the required permissions for
+<<<<<<< HEAD
         # -----------------------------------------------------------
         # Workaround to ensure DjangoModelPermissions are not applied
         # to the root view when using DefaultRouter.
 
+=======
+        #
+        # -----------------------------------------------------------
+        # Workaround to ensure DjangoModelPermissions are not applied
+        # to the root view when using DefaultRouter.
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
         if getattr(view, '_ignore_model_permissions', False):
             return True
 
@@ -49,8 +64,11 @@ class SubmissionPermissions(permissions.DjangoObjectPermissions):
             'does not set `.queryset` or have a `.get_queryset()` method.'
         )
 
+<<<<<<< HEAD
         perms = self.get_required_permissions(request.method, queryset.model)
 
+=======
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
         return (
             request.user and
             (request.user.is_authenticated()
@@ -74,12 +92,22 @@ def add_approved_submission_permissions_to_current_osf_user(submission):
         name=OsfOauth2AdapterConfig.osf_users_group)
     assign_perm("submissions.view_submission", current_osf_users, submission)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def remove_approved_submission_permissions_from_current_osf_user(submission):
     current_osf_users = Group.objects.get(
         name=OsfOauth2AdapterConfig.osf_users_group)
     remove_perm("submissions.view_submission", current_osf_users, submission)
 
+<<<<<<< HEAD
 def add_submission_permissions_to_submission_contributor(submission, submission_contributor):
+=======
+
+def add_submission_permissions_to_submission_contributor(submission,
+                                                         submission_contributor):
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     assign_perm(
         "submissions.change_submission", submission_contributor, submission)
     assign_perm(
@@ -88,7 +116,12 @@ def add_submission_permissions_to_submission_contributor(submission, submission_
         "submissions.view_submission", submission_contributor, submission)
 
 
+<<<<<<< HEAD
 def remove_submission_permissions_from_submission_contributor(submission, submission_contributor):
+=======
+def remove_submission_permissions_from_submission_contributor(submission,
+                                                              submission_contributor):
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     remove_perm(
         "submissions.change_submission", submission_contributor, submission)
     remove_perm(
@@ -97,7 +130,12 @@ def remove_submission_permissions_from_submission_contributor(submission, submis
         "submissions.view_submission", submission_contributor, submission)
 
 
+<<<<<<< HEAD
 def add_submission_permissions_to_conference_admin(submission, submission_contributor):
+=======
+def add_submission_permissions_to_conference_admin(submission,
+                                                   submission_contributor):
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     assign_perm(
         "submissions.change_submission", submission_contributor, submission)
     assign_perm(
@@ -106,7 +144,12 @@ def add_submission_permissions_to_conference_admin(submission, submission_contri
         "submissions.view_submission", submission_contributor, submission)
 
 
+<<<<<<< HEAD
 def remove_submission_permissions_from_conference_admin(submission, submission_contributor):
+=======
+def remove_submission_permissions_from_conference_admin(submission,
+                                                        submission_contributor):
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     remove_perm(
         "submissions.change_submission", submission_contributor, submission)
     remove_perm(

@@ -12,10 +12,15 @@ from submissions.serializers import SubmissionSerializer
 
 from submissions.models import Submission
 from approvals.models import Approval
+<<<<<<< HEAD
 from conferences.models import Conference
 from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialToken
 from allauth.socialaccount.models import SocialAccount
+=======
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
 import requests
 from api.apps import OsfOauth2AdapterConfig
@@ -43,6 +48,7 @@ class SubmissionViewSet(viewsets.ModelViewSet):
                                           context={'request': request})
         new_approval = Approval.objects.create()
         contributor = request.user
+<<<<<<< HEAD
         current_user = request.user.username
         account = SocialAccount.objects.get(uid=current_user)
         osf_token = SocialToken.objects.get(account=account)
@@ -59,6 +65,17 @@ class SubmissionViewSet(viewsets.ModelViewSet):
                         'type' : 'nodes'
                     }
                 }
+=======
+        if not request.user.has_perm('submissions.can_set_contributor'):
+            if serializer.is_valid():
+                serializer.save(contributor=contributor, approval=new_approval)
+                return Response(serializer.data)
+        else:
+            # email submissions can set contributor
+            if serializer.is_valid():
+                serializer.save(approval=new_approval)
+                return Response(serializer.data)
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
                 response = requests.post(
                         self.node_url,

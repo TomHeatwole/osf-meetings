@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_json_api',
     'oauth2_provider',
     'api',
+    'approvals',
     'conferences',
     'submissions',
     'approvals',
@@ -178,3 +179,6 @@ SOCIALACCOUNT_ADAPTER = 'osf_oauth2_adapter.views.OSFOAuth2Adapter'
 
 # Where users are redirected after login
 LOGIN_REDIRECT_URL = 'http://localhost:4200'
+
+CLIENT_ID = ''
+CLIENT_SECRET = ''

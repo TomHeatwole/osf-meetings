@@ -1,9 +1,31 @@
 import DS from 'ember-data';
+<<<<<<< HEAD
 import OsfAdapter from './osf-adapter';
 import Ember from 'ember';
 
 export default OsfAdapter.extend({
     namespace : '',
+=======
+import config from '../config/environment';
+import Ember from 'ember';
+
+export default DS.JSONAPIAdapter.extend({
+    host: config.meetingsUrl,
+    buildURL(modelName, id, snapshot, requestType) {
+        // Fix issue where CORS request failed on 301s: Ember does not seem to append trailing
+        // slash to URLs for single documents, but DRF redirects to force a trailing slash
+        var url = this._super(...arguments);
+        if (requestType === 'deleteRecord' || requestType === 'updateRecord' || requestType === 'findRecord') {
+            if (snapshot.record.get('links.self')) {
+                url = snapshot.record.get('links.self');
+            }
+        }
+        if (url.lastIndexOf('/') !== url.length - 1) {
+            url += '/';
+        }
+        return url;
+    },
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     ajax: function(url, method, hash) {
         hash.crossDomain = true;
         hash.xhrFields = {withCredentials: true};

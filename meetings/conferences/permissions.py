@@ -26,7 +26,11 @@ class ConferencePermissions(permissions.DjangoObjectPermissions):
         # OVERWRITING THIS METHOD FROM DRF
         #
         # This method gets called on list view and normally fails due to
+<<<<<<< HEAD
         # the commented out line below.
+=======
+        # the commented out line in the return statement.
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
         #
         # DjangoObjectPermissionsFilter ensures users can only see what they are supposed
         # to be able to see
@@ -50,7 +54,11 @@ class ConferencePermissions(permissions.DjangoObjectPermissions):
             'does not set `.queryset` or have a `.get_queryset()` method.'
         )
 
+<<<<<<< HEAD
         perms = self.get_required_permissions(request.method, queryset.model)
+=======
+        # perms = self.get_required_permissions(request.method, queryset.model)
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
         return (
             request.user and
@@ -59,10 +67,18 @@ class ConferencePermissions(permissions.DjangoObjectPermissions):
             # and request.user.has_perms(perms)
         )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def add_conference_permissions_to_public(conference):
     public = User.objects.get(username="AnonymousUser")
     assign_perm("conferences.view_conference", public, conference)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def remove_conference_permissions_from_public(conference):
     public = User.objects.get(username="AnonymousUser")
     remove_perm("conferences.view_conference", public, conference)
@@ -73,11 +89,19 @@ def add_conference_permissions_to_current_osf_user(conference):
         name=OsfOauth2AdapterConfig.osf_users_group)
     assign_perm("conferences.view_conference", current_osf_users, conference)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def remove_conference_permissions_from_current_osf_user(conference):
     current_osf_users = Group.objects.get(
         name=OsfOauth2AdapterConfig.osf_users_group)
     remove_perm("conferences.view_conference", current_osf_users, conference)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def add_conference_permissions_to_conference_admin(conference, conference_admin):
     assign_perm(
         "conferences.change_conference", conference_admin, conference)
@@ -86,6 +110,10 @@ def add_conference_permissions_to_conference_admin(conference, conference_admin)
     assign_perm(
         "conferences.view_conference", conference_admin, conference)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 def remove_conference_permissions_from_conference_admin(conference, conference_admin):
     remove_perm(
         "conferences.change_conference", conference_admin, conference)

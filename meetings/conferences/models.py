@@ -1,7 +1,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
+<<<<<<< HEAD
 #from submissions.models import Submission
+=======
+from django_countries.fields import CountryField
+from django.contrib.auth.models import User
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
 from django.contrib.sites.models import Site
 from django_countries.fields import CountryField
@@ -27,9 +32,15 @@ class Conference(models.Model):
 
     class Meta:
         ordering = ('created',)
+<<<<<<< HEAD
         permissions= (
             ('view_conference', 'Can view conference'),
             )
 
     class JSONAPIMeta:
         resource_name = "conferences"
+=======
+        permissions = (
+            ('view_conference', 'Can view conference'),
+        )
+>>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
