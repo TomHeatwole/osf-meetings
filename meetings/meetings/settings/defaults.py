@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'rest_framework_json_api',
     'oauth2_provider',
     'api',
-    'approvals',
     'conferences',
     'submissions',
     'approvals',

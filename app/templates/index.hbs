@@ -27,40 +27,6 @@
                     <button id="listButton" class="btn btn-default navbar-btn" {{action "listView"}}>
                         <span class="glyphicon glyphicon-th-list"></span>
                     </button>
-<<<<<<< HEAD
-                </form>
-            </div>
-        </nav>
-
-      {{#if tileview}}
-          <div class="row conference-view-outer-container" id="indexBottom">
-              <div class="col-md-10 col-md-offset-1">
-                  <div class="col-md-10 col-md-offset-1 tile-view fade-background">
-                  {{#if this.results}}
-                      {{#masonry-grid  isFitWidth=true gutter=20 items= model as |conf|}}
-                          {{#link-to "conference.index"  conf.id class="title"}}
-                              {{meeting-masonry title=conf.title
-                              description=conf.description logo=conf.logo
-                              location=(location-display
-                              conf.city conf.state conf.country)
-                              date=(date-display conf.start)
-                              submissions=conf.submissionCount}}
-                          {{/link-to}}
-                      {{/masonry-grid}}
-                      {{else}}
-                      <h4> There are no results for <em><strong>{{this.query}}</strong></em></h4>
-                      {{/if}}
-                  </div> <!-- end tile view -->
-              </div> <!-- end conference-view-inner-container-->
-          </div><!-- end conference-view-outer-container-->
-      {{else}}
-          <div class="row conference-view-outer-container">
-              <div class="col-md-12 table-view">
-                  <div class="col-md-10 col-md-offset-1 fade-background">
-                  {{#if this.results}}
-                      <div class="col-md-12">
-                          <div class="row table-head">
-=======
                     {{#if this.results}}
                         {{#masonry-grid gutter=20 items= model as |conf|}}
                             {{#link-to "conference.index"  conf.id class="title"}}
@@ -95,7 +61,6 @@
                     {{#if this.results}}
                         <div class="col-md-12">
                             <div class="row table-head">
->>>>>>> 5ddddb58229a106d36beaecbe650a2fad134065b
                                 <div class="col-md-4">
                                     <h4>Title</h4>
                                 </div>

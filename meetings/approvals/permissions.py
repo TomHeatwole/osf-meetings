@@ -24,11 +24,7 @@ class ApprovalPermissions(permissions.DjangoObjectPermissions):
         # OVERWRITING THIS METHOD FROM DRF
         #
         # This method gets called on list view and normally fails due to
-<<<<<<< HEAD
-        # the commented out line below.
-=======
         # the commented out line below in the return statement.
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
         #
         # DjangoObjectPermissionsFilter ensures users can only see what they are supposed
         # to be able to see
@@ -52,11 +48,7 @@ class ApprovalPermissions(permissions.DjangoObjectPermissions):
             'does not set `.queryset` or have a `.get_queryset()` method.'
         )
 
-<<<<<<< HEAD
-        perms = self.get_required_permissions(request.method, queryset.model)
-=======
         # perms = self.get_required_permissions(request.method, queryset.model)
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
         return (
             request.user and
@@ -70,12 +62,7 @@ def add_approval_permissions_to_submission_contributor(approval, submission_cont
     assign_perm("approvals.delete_approval", submission_contributor, approval)
     assign_perm("approvals.view_approval", submission_contributor, approval)
 
-
-<<<<<<< HEAD
-def remove_approval_permissions_to_submission_contributor(approval, submission_contributor):
-=======
 def remove_approval_permissions_from_submission_contributor(approval, submission_contributor):
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     remove_perm("approvals.delete_approval", submission_contributor, approval)
     remove_perm("approvals.view_approval", submission_contributor, approval)
 
@@ -85,12 +72,7 @@ def add_approval_permissions_to_conference_admin(approval, conference_admin):
     assign_perm("approvals.delete_approval", conference_admin, approval)
     assign_perm("approvals.view_approval", conference_admin, approval)
 
-
-<<<<<<< HEAD
-def remove_approval_permissions_to_conference_admin(approval, conference_admin):
-=======
 def remove_approval_permissions_from_conference_admin(approval, conference_admin):
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     remove_perm("approvals.change_approval", conference_admin, approval)
     remove_perm("approvals.delete_approval", conference_admin, approval)
     remove_perm("approvals.view_approval", conference_admin, approval)

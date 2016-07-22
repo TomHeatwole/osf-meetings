@@ -3,25 +3,16 @@ from rest_framework.reverse import reverse
 from rest_framework_json_api.relations import ResourceRelatedField
 
 from submissions.models import Submission
-<<<<<<< HEAD
 from conferences.models import Conference
 from approvals.models import Approval
 from django.contrib.auth.models import User
 from api.serializers import UserSerializer
-=======
-from approvals.models import Approval
-from django.contrib.auth.models import User
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
 
 class SubmissionSerializer(ser.ModelSerializer):
     links = ser.SerializerMethodField()
     can_edit = ser.SerializerMethodField()
     node_id = ser.CharField(read_only=True)
-<<<<<<< HEAD
-
-=======
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
     contributor = ResourceRelatedField(
         queryset=User.objects.all(), required=False, allow_null=True)
     approval = ResourceRelatedField(
@@ -29,23 +20,6 @@ class SubmissionSerializer(ser.ModelSerializer):
 
     class Meta:
         model = Submission
-<<<<<<< HEAD
-
-#    conference = ResourceRelatedField(
-#        queryset=Conference.objects,
-#        related_link_view_name='conference:submission:list',
-#        related_link_url_kwarg='submission_id',
-#        self_link_view_name='submission-relationships'
-#    )
-
-#    def create(self, validated_data):
-#        # look up contributors by ID
-#        submission = Submission.objects.create(title=title, description=description, conference=conference, approved=False)
-#        for contributor in contributors:
-#                submission.contributors.add(contributor)
-#        return submission
-=======
->>>>>>> cb7e5d34aa161ab329f7fcedcbe5f511bbb34266
 
     def get_links(self, obj):
         request = self.context.get('request')

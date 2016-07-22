@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from api.serializers import UserSerializer
 from rest_framework import viewsets
 from api.serializers import AuthenticationSerializer
-
+import requests
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
