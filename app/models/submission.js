@@ -8,7 +8,7 @@ export default Model.extend({
     description : attr('string'),
     canEdit: attr('boolean'),
     category: attr('string'),
-    date_created: attr(),
-    download_link: attr('string'),
-    download_count: attr('string')
+    dateCreated: attr(),
+    downloadLink: attr('string'),
+    downloadCount: attr('string')
 });
