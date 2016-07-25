@@ -11,6 +11,7 @@ class Submission(models.Model):
     contributor = models.ForeignKey(
         User, blank=True, related_name="contributor")
     description = models.TextField()
+    # category = models.TextField()  
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
     approval = models.OneToOneField('approvals.Approval')
 

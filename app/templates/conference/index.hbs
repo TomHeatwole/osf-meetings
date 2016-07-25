@@ -41,6 +41,45 @@
                                         {{node-component title=item.title contributors=item.contributors description=item.description}}
                                         </a>
                                     {{/each}}
+                            <!-- This is the basic code for a table of submissions without images -->
+                            {{#if (has-submissions model.submissions)}}
+                                <table class="table table-hover">
+                                    <thead class="thead">
+                                        <tr>
+                                            <th class="heading" bgcolor="#E0E0E0" width="30%" data-sortable="true">Title</th>
+                                            <th class="heading" bgcolor="#E0E0E0" width="15%">Author</th>
+                                            <th class="heading" bgcolor="#E0E0E0" width="15%">Category</th>
+                                            <th class="heading" bgcolor="#E0E0E0" width="19%">Submission Date</th>
+                                            <th class="heading" bgcolor="#E0E0E0" width="15%">Download</th>
+                                            <th class="heading" bgcolor="#E0E0E0" width="6%">#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each model.submissions as |item|}}
+                                            <tr bgcolor="FFFFFF">
+                                                <th class="tableTitle" scope="row">
+                                                    <a target="_blank" style="color: #0080ff;" href={{link-to-osf item.id}}>
+                                                        {{item.title}}
+                                                    </a>
+                                                </th>
+                                                <td style="color: black;">{{#each item.contributors as |contributor|}}
+                                                        {{contributor.users.fullName}}
+                                                    {{/each}}
+                                                </td>
+                                                <td class="tableCategory" style="color: #000000">{{item.category}}</td>
+                                                <td class="tableDate" style="color: #000000">{{item.date_created}}</td>
+                                                <td class="tableDownload" style="color: #000000 text-align: center">
+                                                    <button type='btn-success' {{action "download" "http://pngimg.com/upload/book_PNG2116.png"}}>
+                                                    <!--button type='btn-success' {{action "download" item.download_link}}-->
+                                                        ↓
+                                                    </button>
+                                                </td>
+                                                <td class="tableDownloadCount" style="color: #000000">
+                                                    {{item.download_count}}
+                                                </td>
+
+                                            </tr>
+                                        {{/each}}
                                     </tbody>
                                     </table>
                                     </div>
