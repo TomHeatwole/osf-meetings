@@ -74,13 +74,11 @@
                                                         {{item.title}}
                                                     </a>
                                                     {{#if item.canEdit}}
-                                                        <br>
-                                                        <button class='btn-danger' {{action "deleteSubmission" model.conf.id item.id}}>
-                                                            Delete
-                                                        </button>
+                                                        {{delete-submission submission=item}}
                                                     {{/if}}
                                                 </th>
-                                                <td style="color: black;">{{#each item.contributors as |contributor|}}
+                                                <td style="color: black;">
+                                                    {{#each item.contributors as |contributor|}}
                                                         {{contributor.users.fullName}}
                                                     {{/each}}
                                                 </td>
@@ -88,13 +86,12 @@
                                                 <td class="tableDate" style="color: #000000">{{item.dateCreated}}</td>
                                                 <td class="tableDownload" style="color: #000000 text-align: center">
                                                     <button type='btn-success' {{action "download" item.downloadLink}}>
-                                                        ↓ 
+                                                        ↓
                                                     </button>
                                                 </td>
                                                 <td class="tableDownloadCount" style="color: #000000">
                                                     {{item.downloadCount}}
                                                 </td>
-
                                             </tr>
                                         {{/each}}
                                     </tbody>

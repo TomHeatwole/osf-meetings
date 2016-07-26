@@ -5,6 +5,7 @@ import Ember from 'ember';
 export default OsfAdapter.extend({
     namespace : '',
     ajax: function(url, method, hash) {
+        hash = hash || {};
         hash.crossDomain = true;
         hash.xhrFields = {withCredentials: true};
         return this._super(url, method, hash);
