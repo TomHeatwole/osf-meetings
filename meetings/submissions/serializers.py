@@ -5,8 +5,9 @@ from rest_framework_json_api.relations import ResourceRelatedField
 from submissions.models import Submission
 from approvals.models import Approval
 from django.contrib.auth.models import User
-from django.conf import settings
-import requests
+# from django.conf import settings
+# import requests
+# TODO: Comment these back in. They are commented out so Travis will shut up
 
 
 class SubmissionSerializer(ser.ModelSerializer):
@@ -53,4 +54,3 @@ class SubmissionSerializer(ser.ModelSerializer):
         # parse that for variable: downloads
         # return downloads
         return 25  # hardcoded placeholder
-        
