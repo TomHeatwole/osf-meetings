@@ -20,3 +20,4 @@ class Submission(models.Model):
             ('can_set_contributor', 'Can set the contributor for a submission'),
             ('view_submission', 'Can view submission'),
         )
+    

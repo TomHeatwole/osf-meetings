@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 import requests
 
+
 class SubmissionSerializer(ser.ModelSerializer):
     links = ser.SerializerMethodField()
     can_edit = ser.SerializerMethodField()
@@ -45,10 +46,11 @@ class SubmissionSerializer(ser.ModelSerializer):
         return (user == obj.contributor or user == obj.conference.admin)
 
     def get_download_count(self, obj):
-        OSF_API_URL = "api.osf.io"
         # file_id = Submission.objects.filter() <-- Edit this to find the actual fileid
-        r = requests.get(settings.OSF_API_URL + "/v2/files/")  # should be /v2/files/file_id
-        # r.text gives following format: u'[{"repository":{"open_issues":0,"url":"https://github.com/...
+        # r = requests.get(settings.OSF_API_URL + "/v2/files/")  # should be /v2/files/file_id
+        # r.text gives following format:
+        # u'[{"repository":{"open_issues":0,"url":"https://github.com/...
         # parse that for variable: downloads
         # return downloads
         return 25  # hardcoded placeholder
+        
