@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'submissions',
     'mail',
     'autofixture',
-    'rest_framework_docs'
+    'rest_framework_swagger'
 ]
 
 REST_FRAMEWORK = {
@@ -76,6 +76,21 @@ REST_FRAMEWORK = {
 }
 
 JSON_API_FORMAT_KEYS = 'dasherize'
+
+SWAGGER_SETTINGS = {
+    'api_path': '/',
+    'info': {
+        'description':
+        """
+        Welcome to the fine documentation for the Open Science Framework's API!  Please click
+        on the <strong>GET /v2/</strong> link below to get started.
+        For the most recent docs, please check out our <a href="/v2/">Browsable API</a>.
+        """,
+        'title': 'OSF APIv2 Documentation',
+    },
+    'doc_expansion': 'list',
+    'exclude_namespaces': ['applications', 'tokens'],
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -173,8 +188,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 SITE_ID = 1
 
 OSF_API_URL = ('https://staging-api.osf.io').rstrip('/') + '/'
